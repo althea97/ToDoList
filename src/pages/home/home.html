@@ -1,0 +1,44 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>To Do List</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <h2></h2>
+
+  <ion-item>
+      <ion-label id="label" color="primary">Task</ion-label>
+      <ion-input [(ngModel)]="task" value="" type="text" id="taskName"></ion-input>  
+  </ion-item>
+
+  <button ion-button full (click)="addTask()" id="addBtn" value="addBTN">ADD TASK</button>
+
+  <ion-list *ngFor="let t of taskList">
+    <ion-item-sliding #item>
+      <ion-item>
+        <ion-checkbox (ionChange)="updateTask(t)"></ion-checkbox>
+        <ion-label>{{t}}</ion-label>
+      </ion-item>
+
+      <ion-item-options side="right">        
+        <button ion-button (click)="editTask(t)">
+          <ion-icon name="md-create"></ion-icon>EDIT</button>
+        <button ion-button (click)="deleteTask(t)">
+          <ion-icon name="trash"></ion-icon>DELETE</button>
+      </ion-item-options>
+    </ion-item-sliding>
+  </ion-list>
+
+  <hr>
+
+  <ul>
+    <li *ngFor="let dt of doneTaskList">
+      <ion-item>
+          <ion-checkbox (ionChange)="redeclareTask(dt)" checked="true"></ion-checkbox>
+          <ion-label class="done">{{dt}}</ion-label> 
+      </ion-item>
+    </li>
+  </ul>
+
+</ion-content>
